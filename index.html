@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. Atributos</title>
+</head>
+
+<body>
+    <div>
+        <!-- TITULO -->
+        <h1>Clase de Atributos</h1>
+    </div>
+    <div>
+        <!-- FOMULARIO -->
+        <form id="form1">
+            <label for="A">A</label>
+            <input id="A" type="number" placeholder="Introdusca A">
+            <br>
+            <label for="B">B</label>
+            <input id="B" type="number" placeholder="Introdusca B">
+            <br>
+            <input type="submit" value="calcular">
+
+        </form>
+    </div>
+    <div>
+        <!-- TABLA DE RESULTADO -->
+        <table>
+            <thead>
+                <th>A</th>
+                <th>+</th>
+                <th>B</th>
+                <th>=</th>
+                <th>Resultado</th>
+            </thead>
+            <tbody id="res">
+            </tbody>
+        </table>
+    </div>
+    <script>
+        (() => {
+            const App = {
+                htmlElements: {
+                    form: document.getElementById("form1"),
+                    A: document.getElementById("A"),
+                    B: document.getElementById("B"),
+                    res: document.getElementById("res")
+                },
+                init: () => {
+                    App.bindEvents();
+                },
+                bindEvents: () => {
+                    App.htmlElements.form.addEventListener("submit", App.Methods.onFormSubmit);
+                },
+                Methods: {
+                    onFormSubmit: (e) => {
+                        e.preventDefault();
+                        const A = parseInt(App.htmlElements.A.value)
+                        const B = parseInt(App.htmlElements.B.value)
+                        let res = 0;
+                        try {
+                            res = A + B;
+                        }
+                        catch (err) {
+                            res = 0;
+                        }
+                        App.htmlElements.res.innerHTML +=
+                            `<tr>
+                            <td>${A}</td>
+                            <td>+</td>
+                            <td>${B}</td>
+                            <td>=</td>
+                            <td>${res}</td>
+                        </tr>`
+                    }
+                }
+            };
+            App.init();
+        })();
+    </script>
+</body>
+
+</html>
