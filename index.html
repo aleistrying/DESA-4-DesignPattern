@@ -57,13 +57,13 @@
                 Methods: {
                     onFormSubmit: (e) => {
                         e.preventDefault();
-                        const A = parseInt(App.htmlElements.A.value)
-                        const B = parseInt(App.htmlElements.B.value)
                         let res = 0;
+                        const A = (App.htmlElements.A.value === "") ? 0 : parseInt(App.htmlElements.A.value);
+                        const B = (App.htmlElements.B.value === "") ? 0 : parseInt(App.htmlElements.B.value);
                         try {
                             res = A + B;
                         }
-                        catch (err) {
+                        catch (err) {//no deberia haber error a menos que haya division
                             res = 0;
                         }
                         App.htmlElements.res.innerHTML +=
